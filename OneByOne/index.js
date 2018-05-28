@@ -35,12 +35,14 @@ class Ele {
 }
 
 class Input {
-    constructor(type) {
+    constructor(type, value) {
         this.type = type;
         this.input = new Ele('input', 'input');
         this.inputWrap = new Ele('div', 'input-wrap');
         this.filler = new Ele('div', 'filler');
         this.inputEl = this.input.el;
+
+        this.inputEl.value = value;
 
         this.inputWrap.el.appendChild(this.inputEl);
         this.inputWrap.el.appendChild(this.filler.el);
@@ -66,7 +68,7 @@ class Input {
     switch() {
         const { type } = this;
         this.input[type === 'password' ? 'fadeIn' : 'fadeOut']();
-        if(this.value()){
+        if (this.value()) {
             this.filler[type === 'password' ? 'fadeOut' : 'fadeIn']();
         }
         this.type = type === 'password' ? 'text' : 'password';
@@ -107,6 +109,11 @@ class Input {
 
 
 window.onload = function () {
+    const defaultValue = 'password'.split('');
+    for (let item of defaultValue) {
+        appendNewInput(item);
+    }
+
     inputs.addEventListener('click', function (e) {
         if (e.target === this) {
             const inputListLength = inputList.length;
@@ -156,8 +163,8 @@ function afterInput(input, e) {
 /**
  * 插入新的Input
  */
-function appendNewInput() {
-    const input = new Input(type);
+function appendNewInput(value = '') {
+    const input = new Input(type, value);
     input.on('input', afterInput.bind(input.inputEl, input));
     input.append(inputs);
     input.focus();
