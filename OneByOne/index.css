@@ -92,7 +92,7 @@ body {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: rgba(255, 203, 236, .3);
+    background: rgba(255, 203, 236, .6);
     animation: ripple linear .5s;
     animation-fill-mode: forwards;
 }
