@@ -1,0 +1,57 @@
+.demo {
+  display: flex;
+}
+
+.rect {
+  width: 100px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.half-circle {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 10px solid #FEE3F5;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid transparent;
+  box-sizing: border-box;
+
+  &-left {
+    left: 0;
+    transform: rotate(45deg);
+    animation: left-half-rotate 1s linear .5s infinite;
+    animation-fill-mode: forwards;
+  }
+
+  &-right {
+    right: 0;
+    transform: rotate(-135deg);
+    animation: right-half-rotate 1s linear infinite;
+    animation-fill-mode: forwards;
+  }
+}
+
+
+@keyframes right-half-rotate {
+  0%{
+    transform: rotate(-135deg);
+  }
+
+
+  100%{
+    transform: rotate(225deg);
+  }
+}
+
+@keyframes left-half-rotate {
+  0%{
+    transform: rotate(45deg);
+  }
+
+  100%{
+    transform: rotate(405deg);
+  }
+}
