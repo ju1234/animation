@@ -36,7 +36,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    overflow: hidden;
     transform-origin: left center;
     transform: rotateY(0deg);
 }
@@ -89,8 +88,8 @@ body {
     bottom: 0;
     right: 0;
     margin: auto;
-    width: 10px;
-    height: 10px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     background: rgba(255, 203, 236, .6);
     animation: ripple linear .5s;
@@ -160,16 +159,16 @@ body {
 
 @keyframes ripple {
     0% {
-        transform: scale(1);
+        transform: scale(.1);
     }
 
     50% {
-        transform: scale(15);
+        transform: scale(1);
         opacity: 1;
     }
 
     100% {
-        transform: scale(30);
+        transform: scale(2);
         opacity: 0;
     }
 }
