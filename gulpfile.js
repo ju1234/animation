@@ -77,7 +77,7 @@ gulp.task('default', ['compile:js', 'compile:less', 'compile:html', 'compile:img
 function cataloguesProd(pattern) {
     return new Promise(resolve => {
         const html = '<ul>' + glob.sync(pattern).reduce((prev, curr) => {
-                const route = path.resolve(__dirname, curr).replace(outputPath, isProduction ? '/dist' :'');
+                const route = path.resolve(__dirname, curr).replace(outputPath, isProduction ? '/animation/dist' :'');
                 return prev + `<li><a href="${route}">${route}</a></li>`;
             }, '') + '</ul>';
 
