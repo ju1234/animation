@@ -67,18 +67,19 @@ gulp.task('dev', ['default'], () => {
         });
         gulp.watch("src/**/*", ['default', browserSync.reload]);
     });
-
 });
 
-gulp.task('default', ['compile:js', 'compile:less', 'compile:html', 'compile:img']);
+gulp.task('default', ['compile:js', 'compile:less', 'compile:html', 'compile:img'],() => {
+    cataloguesProd('./dist/**/index.html')
+});
 
 
 function cataloguesProd(pattern) {
     return new Promise(resolve => {
         const html = '<ul>' + glob.sync(pattern).reduce((prev, curr) => {
-            const route = path.resolve(__dirname, curr).replace(outputPath, '');
-            return prev + `<li><a href="${route}">${route}</a></li>`;
-        }, '') + '</ul>';
+                const route = path.resolve(__dirname, curr).replace(outputPath, isProduction ? '/dist' :'');
+                return prev + `<li><a href="${route}">${route}</a></li>`;
+            }, '') + '</ul>';
 
         fs.writeFile(path.resolve(outputPath, 'routes.html'), html, (err) => {
             if (err) return console.log(err);
