@@ -6,13 +6,44 @@
     <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-    <div class="demo">
-        <div class="rect">
-            <div class="half-circle half-circle-left"></div>
+<div class="wrapper">
+    <div class="loading" id="loading">
+        <div class="loading-rect">
+            <div class="loading-half-circle loading-half-circle-left"></div>
         </div>
-        <div class="rect">
-            <div class="half-circle half-circle-right"></div>
+        <div class="loading-rect">
+            <div class="loading-half-circle loading-half-circle-right"></div>
         </div>
     </div>
+    <button class="btn" id="btn">
+        <p id="btnText">click me</p>
+    </button>
+</div>
+
+
+<script>
+    function $(id) {
+        return document.getElementById(id)
+    }
+
+    const btn = $('btn'), loading = $('loading'), btnText = $('btnText');
+
+    window.onload = function () {
+        btn.addEventListener('click', function () {
+                this.classList.add('btn-before-animation');
+                setTimeout(() => {
+                    btnText.classList.add('bounce')
+                    btnText.addEventListener('animationend', btnHide)
+                }, 300)
+            }
+        )
+    }
+
+    function btnHide() {
+        btn.classList.remove('btn-before-animation')
+        btn.classList.add('hide')
+        btnText.classList.remove('bounce')
+    }
+</script>
 </body>
 </html>
